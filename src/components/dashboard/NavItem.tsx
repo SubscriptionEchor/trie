@@ -6,6 +6,7 @@ export interface NavItemProps {
     id: string;
     label: string;
     icon: string;
+    route?: string;
   };
 }
 
@@ -23,7 +24,7 @@ export function NavItem({ item }: NavItemProps) {
       whileHover={{ scale: 1.02 }}
       whileTap={{ scale: 0.98 }}
       onClick={() => {
-        navigate(`/dashboard/${item.id}`);
+        navigate(item.route || `/dashboard/${item.id}`);
         // Close any open modals/menus
         const event = new CustomEvent('closeModals');
         window.dispatchEvent(event);

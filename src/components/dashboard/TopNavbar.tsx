@@ -400,6 +400,11 @@ export function TopNavbar() {
           </div>
 
           <div className="flex items-center space-x-6">
+            {/* <button
+              onClick={() => navigate('/playground')}
+              className='inline-flex items-center px-2 py-2 bg-[#0a864b] text-white text-sm font-medium rounded-lg hover:bg-[#026d8a] transition-colors'>
+              PlayGround
+            </button> */}
             {connectedWallet?.did ? <button onClick={() => {
               window.open(`/faucet`, '_blank')
             }} className="px-4 py-2 border border-none bg-[#0284a5] rounded-md text-sm font-medium hover:bg-[#0284a5] transition">

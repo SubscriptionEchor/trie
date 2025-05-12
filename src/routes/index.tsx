@@ -14,6 +14,8 @@ import { RootLayout } from '../components/layouts';
 import { Navigate } from 'react-router-dom';
 import Faucet from '@/components/Faucet';
 import PlatformPage from '@/components/dashboard/platformPage';
+import PlayGround from '@/components/playground/PlayGround';
+
 
 export const router = createBrowserRouter([
   {
@@ -92,7 +94,10 @@ export const router = createBrowserRouter([
         path: 'faucet',
         element: <Faucet />,
       },
-
+      {
+        path: 'playground',
+        element: <PlayGround />,
+      }
     ]
   }
 ]);
