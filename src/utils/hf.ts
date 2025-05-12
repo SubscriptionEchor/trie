@@ -1759,7 +1759,7 @@ async function getActiveInferenceModels(): Promise<ModelConfig[]> {
     }
 }
 
-const hf = new InferenceClient(localStorage.getItem('hf_token') || '');
+const hf = new InferenceClient("");
 
 export async function completeChat(
     model: string,

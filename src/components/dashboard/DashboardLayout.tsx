@@ -1,4 +1,5 @@
 // import { TopNavbar } from './TopNavbar';
+import { TopNavbar } from './TopNavbar';
 import { NavItem } from './NavItem';
 import { useAuth } from '@/hooks';
 import { useState, useEffect } from 'react';
@@ -59,7 +60,7 @@ const ADDITIONAL_NAVIGATION = [
     id: 'playground',
     label: 'Playground',
     route: '/playground',
-    icon: 'M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z'
+    icon: 'M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418'
   }
 ];
 
@@ -110,7 +111,30 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
 
   return (
     <div className="min-h-screen bg-[#f6f6f7] flex flex-col">
-      <main className="flex-1 pt-[84px] pb-[84px] bg-[#f6f6f7] lg:pt-[104px] lg:pl-[280px] relative">
+      {/* Top Navigation Bar - Contains hamburger menu for mobile */}
+      <TopNavbar />
+      
+      <main className="flex-1 pt-[84px] pb-[120px] lg:pb-[84px] bg-[#f6f6f7] lg:pt-[104px] lg:pl-[280px] relative">
+        {/* Mobile Navigation - Visible on small/medium screens */}
+        <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-[#e1e3e5] lg:hidden z-20">
+          <div className="flex justify-around items-center py-2">
+            {MAIN_NAVIGATION.slice(0, 2).map((item) => (
+              <NavItem key={item.id} item={item} isMobile={true} />
+            ))}
+            {/* Always show Playground in mobile nav */}
+            <NavItem 
+              key="playground-mobile" 
+              item={ADDITIONAL_NAVIGATION.find(item => item.id === 'playground')!} 
+              isMobile={true} 
+            />
+            <NavItem 
+              key="settings-mobile" 
+              item={SETTINGS[0]} 
+              isMobile={true} 
+            />
+          </div>
+        </div>
+
         <div className="flex flex-col lg:flex-row">
           {/* Left Sidebar - Navigation */}
           <div className="w-[280px] hidden lg:block flex-shrink-0 fixed left-0 top-[104px] bottom-0 border-r border-[#e1e3e5] pt-12 bg-[#f6f6f7] z-10">

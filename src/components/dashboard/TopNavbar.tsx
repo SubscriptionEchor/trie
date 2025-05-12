@@ -58,13 +58,14 @@ function Modal({ show, onClose, title, children }: ModalProps) {
   );
 }
 
+interface NavItem {
+  id: string;
+  label: string;
+  icon: string;
+  route?: string;
+}
 
-const MAIN_NAVIGATION = [
-  {
-    id: 'all',
-    label: 'Home',
-    icon: 'M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 018.25 20.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25A2.25 2.25 0 0113.5 18v-2.25z'
-  },
+const MAIN_NAVIGATION: NavItem[] = [
   {
     id: 'models',
     label: 'AI Models',
@@ -72,25 +73,44 @@ const MAIN_NAVIGATION = [
   },
   {
     id: 'datasets',
-    label: 'Data Sets',
+    label: 'Datasets',
     icon: 'M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375m16.5 0v3.75m-16.5-3.75v3.75m16.5 0v3.75C20.25 16.153 16.556 18 12 18s-8.25-1.847-8.25-4.125v-3.75m16.5 0c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125'
+  }
+];
+
+const UPLOAD_NAVIGATION: NavItem[] = [
+  {
+    id: 'upload-model',
+    label: 'Upload AI Model',
+    icon: 'M9 3.75H6.912a2.25 2.25 0 00-2.15 1.588L2.35 13.177a2.25 2.25 0 00-.1.661V18a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18v-4.162c0-.224-.034-.447-.1-.661L19.24 5.338a2.25 2.25 0 00-2.15-1.588H15M2.25 15h19.5m-16.5 0h13.5M9 3.75l2.25 4.5m0 0L15 3.75M11.25 8.25h4.5'
   },
+  {
+    id: 'upload-dataset',
+    label: 'Upload Dataset',
+    icon: 'M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375m16.5 0v3.75m-16.5-3.75v3.75m16.5 0v3.75C20.25 16.153 16.556 18 12 18s-8.25-1.847-8.25-4.125v-3.75m16.5 0c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125'
+  }
+];
+
+const ADDITIONAL_NAVIGATION: NavItem[] = [
   {
     id: 'infra-providers',
     label: 'Infra Providers',
     icon: 'M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z'
-  }
-];
-
-const UPLOAD_NAVIGATION = [
+  },
   {
-    id: 'upload',
-    label: 'Upload Content',
-    icon: 'M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L9 8m4-4v12'
+    id: 'become-partner',
+    label: 'Become a Partner',
+    icon: 'M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z'
+  },
+  {
+    id: 'playground',
+    label: 'Playground',
+    route: '/playground',
+    icon: 'M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z'
   }
 ];
 
-const CREATOR_NAVIGATION = [
+const CREATOR_NAVIGATION: NavItem[] = [
   {
     id: 'my-uploads',
     label: 'My Uploads',
@@ -152,8 +172,13 @@ export function TopNavbar() {
   const { isAuthenticated, setIsAuthenticated, setConnectedWallet, connectedWallet, logout, setShowExtensionModal, nftData, infraProviders } = useAuth();
   const messageHandlerRef = useRef<any>(null);
   const [ftCount, setFtCount] = useState(0);
-  const [searchData, setSearchData] = useState([])
+  const [searchData, setSearchData] = useState([]);
   const searchRef = useRef<HTMLDivElement>(null);
+  const [hasUploads, setHasUploads] = useState({
+    models: false,
+    datasets: false,
+    infra: false
+  });
 
   useEffect(() => {
     (async () => {
@@ -169,6 +194,16 @@ export function TopNavbar() {
 
   }, [connectedWallet])
 
+  useEffect(() => {
+    // Check for uploads in each category
+    setHasUploads({
+      models: !!localStorage.getItem('user_uploads_models'),
+      datasets: !!localStorage.getItem('user_uploads_datasets'),
+      infra: !!localStorage.getItem('user_uploads_infra')
+    });
+  }, []);
+
+  const hasAnyUploads = Object.values(hasUploads).some(Boolean);
 
   // Parse the category query parameter for exact comparison
   const activeCategory = new URLSearchParams(location.search).get('category');
@@ -683,13 +718,13 @@ export function TopNavbar() {
                     <div className="space-y-8">
                       {/* Main Navigation */}
                       <div>
-                        <h3 className="px-3 text-sm font-medium text-gray-400 uppercase tracking-wider mb-3">Main</h3>
+                        <h3 className="px-3 text-sm font-medium text-gray-400 uppercase tracking-wider mb-3">BUY</h3>
                         <div className="space-y-1">
                           {MAIN_NAVIGATION.map((item) => (
                             <button
                               key={item.id}
                               onClick={() => {
-                                navigate(`/dashboard/${item.id}`);
+                                navigate(item.route || `/dashboard/${item.id}`);
                                 setIsMobileMenuOpen(false);
                               }}
                               className="flex items-center w-full px-3 py-2 text-sm text-gray-300 hover:text-white hover:bg-[#222222] rounded-lg transition-colors"
@@ -703,9 +738,9 @@ export function TopNavbar() {
                         </div>
                       </div>
 
-                      {/* Additional Navigation */}
+                      {/* Upload Navigation */}
                       <div>
-                        <h3 className="px-3 text-sm font-medium text-gray-400 uppercase tracking-wider mb-3">Additional</h3>
+                        <h3 className="px-3 text-sm font-medium text-gray-400 uppercase tracking-wider mb-3">SELL</h3>
                         <div className="space-y-1">
                           {UPLOAD_NAVIGATION.map((item) => (
                             <button
@@ -743,6 +778,28 @@ export function TopNavbar() {
                               ))}
                             </div>
                           )}
+                        </div>
+                      </div>
+                      
+                      {/* Additional Navigation */}
+                      <div>
+                        <h3 className="px-3 text-sm font-medium text-gray-400 uppercase tracking-wider mb-3">ADDITIONAL</h3>
+                        <div className="space-y-1">
+                          {ADDITIONAL_NAVIGATION.map((item) => (
+                            <button
+                              key={item.id}
+                              onClick={() => {
+                                navigate(item.route || `/dashboard/${item.id}`);
+                                setIsMobileMenuOpen(false);
+                              }}
+                              className="flex items-center w-full px-3 py-2 text-sm text-gray-300 hover:text-white hover:bg-[#222222] rounded-lg transition-colors"
+                            >
+                              <svg className="w-5 h-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d={item.icon} />
+                              </svg>
+                              {item.label}
+                            </button>
+                          ))}
                         </div>
                       </div>
                     </div>
