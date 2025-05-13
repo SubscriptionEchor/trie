@@ -581,51 +581,6 @@ export function TopNavbar() {
         </div>
       </div>
 
-      {/* Desktop Categories Navigation with Dropdowns */}
-      <div className="w-full max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 hidden xl:block">
-        <div className="flex justify-between items-center h-12">
-          <nav className="flex space-x-8">
-            {Object.entries(MODEL_CATEGORIES).map(([category, items]) => (
-              <div key={category} className="relative group">
-                <div className="inline-flex items-center py-4 px-1 text-sm font-medium focus:outline-none rounded transition-colors text-text-secondary hover:text-text-primary cursor-pointer">
-                  <span className={category === selectedCategory ? 'text-[#0284a5]' : ''}>{category}</span>
-                  <svg className="ml-2 h-4 w-4 transition-transform group-hover:rotate-180 text-gray-400 group-hover:text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                  </svg>
-                </div>
-                <div className="absolute z-10 mt-1 w-screen max-w-xs px-2 invisible opacity-0 translate-y-1 group-hover:visible group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-200 max-h-[calc(100vh-4rem)] overflow-y-auto">
-                  <div className="overflow-hidden rounded-lg shadow-popup border border-border">
-                    <div className="relative grid gap-1 bg-[#191919] p-2 divide-y divide-border">
-                      {items.map((item) => (
-                        <button
-                          key={item}
-                          onClick={() => {
-                            let targetView = 'models';
-                            if (item.toLowerCase().includes('data') || item.includes('folder')) {
-                              targetView = 'datasets';
-                            } else if (item.toLowerCase().includes('gpu') || item.toLowerCase().includes('cpu') || item.toLowerCase().includes('storage')) {
-                              targetView = 'infra-providers';
-                            }
-                            navigate(`/dashboard/${targetView}?category=${encodeURIComponent(item)}`);
-                            setSelectedCategory(category);
-                          }}
-                          className="flex items-center rounded-lg px-4 py-2.5 transition duration-150 ease-in-out hover:bg-[#333333] focus:outline-none w-full text-gray-300 hover:text-white"
-                        >
-                          <div>
-                            <p className={`text-sm font-medium ${activeCategory === item ? 'text-[#0284a5]' : ''}`}>
-                              {item}
-                            </p>
-                          </div>
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </nav>
-        </div>
-      </div>
 
       {/* Disconnect Confirmation Modal */}
       <Modal

@@ -22,3 +22,4 @@ export * from './SettingsView';
 export * from './CreatorProfileView';
 export * from './DetailView';
 export * from './BecomePartnerView';
+export * from './CompetitionsView';

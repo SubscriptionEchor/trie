@@ -1,5 +1,5 @@
 import { DashboardLayout, HomeView, ModelsView, DatasetsView, InfraProvidersView, SettingsView, BecomePartnerView, ModelUploadView, DatasetUploadView } from '@/components/dashboard';
-import { MyUploadsView, EarningsView, WithdrawView, TransactionsView, Assets } from '@/components/dashboard';
+import { MyUploadsView, EarningsView, WithdrawView, TransactionsView, Assets, CompetitionsView } from '@/components/dashboard';
 import { useParams } from 'react-router-dom';
 
 const VIEWS = {
@@ -15,7 +15,8 @@ const VIEWS = {
   'withdraw': WithdrawView,
   'transactions': TransactionsView,
   'settings': SettingsView,
-  'become-partner': BecomePartnerView
+  'become-partner': BecomePartnerView,
+  'competitions': CompetitionsView
 };
 
 export function DashboardContainer() {

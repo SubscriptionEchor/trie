@@ -2,7 +2,7 @@
 import { TopNavbar } from './TopNavbar';
 import { NavItem } from './NavItem';
 import { useAuth } from '@/hooks';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, ReactNode } from 'react';
 
 interface DashboardLayoutProps {
   children: React.ReactNode;
@@ -42,6 +42,14 @@ const UPLOAD_NAVIGATION = [
     id: 'upload-dataset',
     label: 'Upload Dataset',
     icon: 'M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375m16.5 0v3.75m-16.5-3.75v3.75m16.5 0v3.75C20.25 16.153 16.556 18 12 18s-8.25-1.847-8.25-4.125v-3.75m16.5 0c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125'
+  }
+];
+
+const COMPETITIONS_NAVIGATION = [
+  {
+    id: 'competitions',
+    label: 'Competitions',
+    icon: 'M16.5 18.75h-9m9 0a3 3 0 013 3h-15a3 3 0 013-3m9 0v-3.375c0-.621-.503-1.125-1.125-1.125h-.871M7.5 18.75v-3.375c0-.621.504-1.125 1.125-1.125h.872m5.007 0H9.497m5.007 0a1.875 1.875 0 010 3.75H9.497a1.875 1.875 0 010-3.75M7.5 4.5v8.25m0 0H4.875c-.621 0-1.125-.504-1.125-1.125V4.5c0-.621.504-1.125 1.125-1.125H7.5m3.75 9.75h2.25c.621 0 1.125.504 1.125 1.125v1.5c0 .621-.504 1.125-1.125 1.125h-2.25c-.621 0-1.125-.504-1.125-1.125v-1.5c0-.621.504-1.125 1.125-1.125m1.5-9.75H15c.621 0 1.125.504 1.125 1.125v1.5c0 .621-.504 1.125-1.125 1.125h-2.25c-.621 0-1.125-.504-1.125-1.125v-1.5c0-.621.504-1.125 1.125-1.125M7.5 4.5h3.375c.621 0 1.125.504 1.125 1.125v1.5c0 .621-.504 1.125-1.125 1.125H7.5c-.621 0-1.125-.504-1.125-1.125v-1.5c0-.621.504-1.125 1.125-1.125'
   }
 ];
 
@@ -167,6 +175,22 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
                   </div>
                 )}
               </div>
+
+              {/* Competitions Navigation */}
+              <div className="space-y-1.5 mb-6">
+                <div className="px-3 mb-2">
+                  <h2 className="font-display text-label text-gray-400 uppercase tracking-wider">COMPETITIONS</h2>
+                </div>
+                {COMPETITIONS_NAVIGATION.map((item) => (
+                  <NavItem 
+                    key={item.id} 
+                    item={item} 
+                    badge={<span className="ml-2 px-1.5 py-0.5 text-xs font-medium bg-red-500 text-white rounded-full">New</span>}
+                  />
+                ))}
+              </div>
+
+              {/* Additional Navigation */}
               <div className="space-y-1.5 mb-6">
                 <div className="px-3 mb-2">
                   <h2 className="font-display text-label text-gray-400 uppercase tracking-wider">ADDITIONAL</h2>

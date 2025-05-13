@@ -1,6 +1,10 @@
 import { motion } from 'framer-motion';
 import { useNavigate, useLocation } from 'react-router-dom';
 
+interface NavItemBadge {
+  label?: string;
+}
+
 export interface NavItemProps {
   item: {
     id: string;
@@ -9,9 +13,10 @@ export interface NavItemProps {
     route?: string;
   };
   isMobile?: boolean;
+  badge?: React.ReactNode;
 }
 
-export function NavItem({ item, isMobile = false }: NavItemProps) {
+export function NavItem({ item, isMobile = false, badge }: NavItemProps) {
   const navigate = useNavigate();
   const location = useLocation();
   const normalizedPath = location.pathname.endsWith('/')
@@ -49,7 +54,10 @@ export function NavItem({ item, isMobile = false }: NavItemProps) {
       >
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d={item.icon} />
       </svg>
-      <span className={isMobile ? 'text-xs' : ''}>{item.label}</span>
+      <div className="flex items-center">
+        <span className={isMobile ? 'text-xs' : ''}>{item.label}</span>
+        {badge && badge}
+      </div>
     </motion.button>
   );
 }
